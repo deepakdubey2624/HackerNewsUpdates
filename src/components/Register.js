@@ -4,16 +4,19 @@ import { Link } from 'react-router-dom';
 class Register extends Component {
 	constructor(props) {
 		super(props);
-
+		
 		this.state = {
 			fullname: '',
 			email: '',
-			password: ''
+			password: '',
+			confirmPass:''
 		};
 
 	
 	}
-
+	 
+	
+	
 	update = (e) => {
 		let name = e.target.name;
 		let value = e.target.value;
@@ -24,9 +27,13 @@ class Register extends Component {
 
 	registerUser = (e) => {
 		e.preventDefault();
-		console.log('You have successfully registered');
+		console.log('Registe Function called.');
 		console.log(this.state);
-	
+	     if(this.state.password !== this.state.confirmPass){
+			 console.log('Password do not matched');
+			 alert("Confirm password fo not matched");
+			 return;
+		 }
         
         
         fetch('/api/register', {
@@ -38,7 +45,13 @@ class Register extends Component {
           })
           .then(res => {
             if (res.status === 200) {
-             alert("user registered")
+			 alert("user registered")
+			 this.setState({
+				fullname: '',
+				email: '',
+				password: '',
+				confirmPass:''
+			 });
             } else {
               const error = new Error(res.error);
               throw error;
@@ -85,12 +98,18 @@ class Register extends Component {
 							onChange={this.update}
 						/>
 					</div>
-
-					<div className="password">
-						<input type="password" placeholder="Confirm Password" name="password1" />
+					<div className="email">
+						<input
+							type="password"
+							placeholder="Confirm Password"
+							name="confirmPass"
+							value={this.state.confirmPass}
+							onChange={this.update}
+						/>
 					</div>
+					
 
-					<input type="submit" value="Login" />
+					<input type="submit" value="Submit" />
 				</form>
 
 				<Link to="/">Login Here</Link>

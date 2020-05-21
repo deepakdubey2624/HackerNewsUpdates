@@ -13,14 +13,15 @@ app.use(bodyParser.json());
 
 app.post('/api/register', function(req, res) {
     const { fullname, email, password } = req.body;
-// database.findOne({ email: email }, function(err, doc) {
+// database.findOne({ email: email }, function(err, user) {
 //     if (err) {
 //         console.log("Error ocured while finding user",err);
 //         res.status(500).send("Error finding user please try again.");
-//       }else{
-//         console.log('Found user:', doc);
-//         res.status(200).send("User Already Exist!");
-//         return;
+//       } else if (user) {
+//         res.status(400)
+//           .json({
+//           error: 'User already exist'
+//         });
 //       }
     
 // });

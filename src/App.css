@@ -26,6 +26,11 @@ body {
 
 .login a {
   text-align: center;
+  font-size: large;
+}
+.register a {
+  text-align: center;
+  font-size: large;
 }
 
 input[type='text'] {
