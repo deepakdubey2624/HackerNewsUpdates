@@ -1,5 +1,7 @@
 This project is build to scrape the news from Hacker news [https://news.ycombinator.com/](https://news.ycombinator.com/)
 
+You Need to Run the App and navigate to [http://localhost:3001](http://localhost:3001) Register a User and Login with Registered User Email and Password.
+
 ## Available Scripts
 
 In the project directory, you have Front end and Backend folder(server):
