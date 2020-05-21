@@ -23,10 +23,13 @@ class Login extends Component {
 
 	userLogin = (e) => {
 		e.preventDefault();
-		console.log('You are logged in');
+		console.log('Logged in called');
 		console.log(this.state);
         
-
+if(this.state.email === '' || this.state.password === ''){
+	alert("Fields cannot be blank");
+	return;
+}
         fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(this.state),

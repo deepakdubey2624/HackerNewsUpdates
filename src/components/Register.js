@@ -15,7 +15,38 @@ class Register extends Component {
 	
 	}
 	 
+	handleValidation = () => {
+		let fields = this.state;
 	
+		let formIsValid = true;
+
+		if(!fields["fullname"]){
+			formIsValid = false;
+			
+		 }
+	
+	
+		 if(!fields["password"]){
+			formIsValid = false;
+			
+		 }
+		 if(!fields["confirmPass"]){
+			formIsValid = false;
+			
+		 }
+		 if(fields.password !== fields.confirmPass){
+			console.log('Password do not matched');
+			alert("Confirm password do not matched");
+			formIsValid = false;
+		}
+		if(!fields["email"]){
+			formIsValid = false;
+			console.log('Email is not valid');
+			
+		 }
+		 return formIsValid;
+
+	}
 	
 	update = (e) => {
 		let name = e.target.name;
@@ -27,40 +58,41 @@ class Register extends Component {
 
 	registerUser = (e) => {
 		e.preventDefault();
-		console.log('Registe Function called.');
+		console.log('Register Function called.');
 		console.log(this.state);
-	     if(this.state.password !== this.state.confirmPass){
-			 console.log('Password do not matched');
-			 alert("Confirm password fo not matched");
-			 return;
-		 }
+		if(this.handleValidation()){
+			console.log('validation successful');
+			fetch('/api/register', {
+				method: 'POST',
+				body: JSON.stringify(this.state),
+				headers: {
+				  'Content-Type': 'application/json'
+				}
+			  })
+			  .then(res => {
+				if (res.status === 200) {
+				 alert("user registered")
+				 this.setState({
+					fullname: '',
+					email: '',
+					password: '',
+					confirmPass:''
+				 });
+				} else {
+				  const error = new Error(res.error);
+				  throw error;
+				}
+			  })
+			  .catch(err => {
+				console.error(err);
+				alert('Error Registering in please try again');
+			  });
+		  }else{
+			console.log('validation failed');
+			alert("Please provide valid values");
+		  }
         
         
-        fetch('/api/register', {
-            method: 'POST',
-            body: JSON.stringify(this.state),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(res => {
-            if (res.status === 200) {
-			 alert("user registered")
-			 this.setState({
-				fullname: '',
-				email: '',
-				password: '',
-				confirmPass:''
-			 });
-            } else {
-              const error = new Error(res.error);
-              throw error;
-            }
-          })
-          .catch(err => {
-            console.error(err);
-            alert('Error Registering in please try again');
-          });
 	}
 
 	render() {
@@ -77,6 +109,7 @@ class Register extends Component {
 							value={this.state.fullname}
 							onChange={this.update}
 						/>
+						
 					</div>
 
 					<div className="email">

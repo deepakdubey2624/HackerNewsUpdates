@@ -7,35 +7,24 @@ const database = new Datastore('users.db');
 const db = new Datastore("./database.db");
 database.loadDatabase();
 db.loadDatabase();
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post('/api/register', function(req, res) {
+app.post('/api/register', async function(req, res) {
     const { fullname, email, password } = req.body;
-// database.findOne({ email: email }, function(err, user) {
-//     if (err) {
-//         console.log("Error ocured while finding user",err);
-//         res.status(500).send("Error finding user please try again.");
-//       } else if (user) {
-//         res.status(400)
-//           .json({
-//           error: 'User already exist'
-//         });
-//       }
-    
-// });
+   
 
-    database.insert({fullname,email, password},function(err, doc) {
-        if (err) {
-            console.log("Error ocured while Register",err);
-            res.status(500).send("Error registering new user please try again.");
-          } else {
-            console.log('Inserted', doc, 'with ID', doc._id);
-            res.status(200).send("Welcome to the club!");
-          }
-        
-    });
+  database.insert({fullname,email, password},function(err, doc) {
+    if (err) {
+        console.log("Error ocured while Register",err);
+        res.status(500).send("Error registering new user please try again.");
+      } else {
+        console.log('Inserted', doc, 'with ID', doc._id);
+        res.status(200).send("Welcome to the club!");
+      }
+    
+});
+
 
   });
 
