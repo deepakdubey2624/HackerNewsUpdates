@@ -7,6 +7,7 @@ You Need to Run the App and navigate to [http://localhost:3001](http://localhost
 In the project directory, you have Front end and Backend folder(server):
 
 1.cd to server folder and run
+### `npm install`
 ### `hackernews`
 
 Launches the Hacker news command to scarpe the website and load the data into Db.<br />
@@ -18,7 +19,7 @@ Launches the Hacker news command to scarpe the website and load the data into Db
 Launches the Express server at. [http://localhost:3001](http://localhost:3001) <br />
 
 In the Main project directory, you can run:
-
+### `npm install`
 ### `npm start`
 
 Runs the React Front end app in the development mode.<br />
