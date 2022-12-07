@@ -10,10 +10,10 @@
   "author": "Deepak Dwivedi",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "cheerio": "^1.0.0-rc.3",
     "commander": "^5.1.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "nedb": "^1.8.0",
     "node-fetch": "^2.6.0"
   },
